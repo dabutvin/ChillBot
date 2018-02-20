@@ -1,0 +1,19 @@
+{
+  "name": "chillbot",
+  "version": "1.0.0",
+  "description": "Labels a thread that is heated for a little while",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dabutvin/ChillBot.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dabutvin/ChillBot/issues"
+  },
+  "homepage": "https://github.com/dabutvin/ChillBot#readme"
+}
