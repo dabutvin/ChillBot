@@ -1,7 +1,6 @@
 var http = require('http');
 var fs = require('fs');
 var storage = require('azure-storage');
-var qs = require('querystring');
 
 var queueService;
 
@@ -31,11 +30,9 @@ http.createServer(function (request, response) {
         });
 
         request.on('end', function () {
-            var post = qs.parse(body);
+            var message = JSON.parse(body);
 
-            console.log(post);
-
-            queueService.createMessage('comments', new Buffer(JSON.stringify(post)).toString('base64'), function(error) {
+            queueService.createMessage('comments', new Buffer(JSON.stringify(message)).toString('base64'), function(error) {
               if (error) {
                 console.log(error);
                 response.writeHead(500);
