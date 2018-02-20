@@ -4,7 +4,7 @@
     {
       "type": "queueTrigger",
       "direction": "in",
-      "name": "comment",
+      "name": "event",
       "queueName": "comments",
       "connection":"AzureWebJobsStorage"
     }
