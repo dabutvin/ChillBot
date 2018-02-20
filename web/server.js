@@ -1,9 +1,10 @@
 var http = require('http');
 var fs = require('fs');
 var storage = require('azure-storage');
+
 var queueService;
 
-fs.readFile('./GitHubHook/local.settings.json', function(error, content) {
+fs.readFile(__dirname + '/../GitHubHook/local.settings.json', function(error, content) {
     if(error) {
         console.log(error);
     } else {
@@ -34,7 +35,7 @@ http.createServer(function (request, response) {
         
         response.end("Success", 'utf-8');
     } else {
-        fs.readFile('./web/index.html', function(error, content) {
+        fs.readFile( __dirname + '/../web/index.html', function(error, content) {
             if (error) {
                 response.writeHead(500);
                 response.end('Sorry :( ' + error.code);
