@@ -1,6 +1,7 @@
 var http = require('http');
 var fs = require('fs');
 var storage = require('azure-storage');
+var qs = require('querystring');
 
 var queueService;
 
@@ -21,22 +22,36 @@ fs.readFile(__dirname + '/../GitHubHook/local.settings.json', function(error, co
 
 http.createServer(function (request, response) {
 
-    if(request.url.indexOf('hook') > -1) {
-        response.writeHead(200, { 'Content-Type': 'application/json'});
+    if(request.url.indexOf('hook') > -1 && request.method === 'POST') {
 
+        var body = '';
+        
+        request.on('data', function (data) {
+            body += data;
+        });
 
-        var objectToSend = { 'data': true };
+        request.on('end', function () {
+            var post = qs.parse(body);
 
-        queueService.createMessage('comments', new Buffer(JSON.stringify(objectToSend)).toString('base64'), function(error) {
-          if (error) {
-            console.log(error);
-          }
+            console.log(post);
+
+            queueService.createMessage('comments', new Buffer(JSON.stringify(post)).toString('base64'), function(error) {
+              if (error) {
+                console.log(error);
+                response.writeHead(500);
+                response.end('Sorry :( ' + error.code);
+                response.end();
+              } else {
+                response.writeHead(200, { 'Content-Type': 'application/json'});
+                response.end("Success", 'utf-8');
+              }
+          });
         });
         
-        response.end("Success", 'utf-8');
     } else {
         fs.readFile( __dirname + '/../web/index.html', function(error, content) {
             if (error) {
+                console.log(error);
                 response.writeHead(500);
                 response.end('Sorry :( ' + error.code);
                 response.end();

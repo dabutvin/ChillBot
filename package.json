@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/dabutvin/ChillBot#readme",
   "dependencies": {
-    "azure-storage": "^2.8.0"
+    "azure-storage": "^2.8.0",
+    "querystring": "^0.2.0"
   }
 }
