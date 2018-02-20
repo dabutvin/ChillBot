@@ -5,7 +5,7 @@ var qs = require('querystring');
 
 var queueService;
 
-fs.readFile(__dirname + '/../GitHubHook/local.settings.json', function(error, content) {
+fs.readFile(__dirname + '/../local.settings.json', function(error, content) {
     if(error) {
         console.log(error);
     } else {
