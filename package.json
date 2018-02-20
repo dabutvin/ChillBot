@@ -4,7 +4,7 @@
   "description": "Labels a thread that is heated for a little while",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node web/server.js"
   },
   "repository": {
     "type": "git",
@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/dabutvin/ChillBot/issues"
   },
-  "homepage": "https://github.com/dabutvin/ChillBot#readme"
+  "homepage": "https://github.com/dabutvin/ChillBot#readme",
+  "dependencies": {
+    "azure-storage": "^2.8.0"
+  }
 }

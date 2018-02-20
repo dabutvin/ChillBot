@@ -1,16 +1,12 @@
 {
+  "disabled": false,
   "bindings": [
     {
-      "type": "httpTrigger",
+      "type": "queueTrigger",
       "direction": "in",
-      "webHookType": "github",
-      "name": "req"
-    },
-    {
-      "type": "http",
-      "direction": "out",
-      "name": "res"
+      "name": "comment",
+      "queueName": "comments",
+      "connection":"AzureWebJobsStorage"
     }
-  ],
-  "disabled": false
+  ]
 }
